@@ -1,7 +1,7 @@
 Write a black line on a white field.
 
 Your program should take 4 arguments, like this:
-PROGNAME 8x7 1,2 3,4 OUTFILENAME
+PROGNAME 8x7 1,2 6,5 OUTFILENAME
 
 That should generate a P1-type PNM, and save it to OUTFILENAME.  That file should contain an image
 with width 8 and height 7, with a line running from 1,2 (near the top-left corner) to 6,5 (near the
