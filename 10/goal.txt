@@ -1,0 +1,61 @@
+Given a vector description of some triangles, rasterize them.
+
+Your program will take 2 arguments:
+  * the filename of a JSON file containing the input
+  * the filetame to which output should be written (in PNM P3 format)
+
+The input is a JSON object like this:
+
+{
+  "width": 10,
+  "height": 20,
+  "background": [0, 0, 0],
+  "triangles": [
+    { "points": [[2.0, 2.1], [1.9, 6.0], [6, 2]], "color": [255, 0, 0] },
+    { "points": [[2, 16], [4, 12], [8, 18]], "color": [0, 255, 0] }
+  ]
+}
+
+Note that color values are RGB triples, with each channel being a value in the
+range of 0-255 (and correspondingly, in your output PNM header, 255 should be
+the max-value).  Also note that all coordinate data is real-valued (i.e. not
+necessarily an integer).  This is really important for this problem.
+
+In the output image, (0.0, 0.0) represents the LEFT EDGE of the TOP LEFT pixel.
+The centre of the top-left pixel will therefore be at (0.5, 0.5).  Therefore,
+the RIGHT EDGE of an entire 10x10 image is at 10.0 (but 10.0001 is off the edge
+of the image).
+
+A pixel should be colored the color of a triangle if its centre is entirely
+enclosed within that triangle.  In this exercise, no triangles should overlap;
+if there is a testcase that does overlap that's a bug, please report it.  :)
+
+TIE BREAKING
+
+If a pixel is exactly on the edge of a triangle, it's not entirely clear what we
+should do about it.  This is very unlikely in the course of real data, but it's
+more likely in tests like these.  Of course, we don't want a pixel to be fought
+over by two triangles, because that could cause shimmer.  And we also don't want
+two triangles to have to know about each other; that would slow down our
+rendering.  If there isn't a multi-triangle conflict, it kind of doesn't matter
+how we resolve the break.  But when two triangles share an edge (or a vertex),
+we definitely don't want shimmer, and also don't really want to fail to color
+either of them.
+
+None of my test-cases should have this right-on-the-boundary case (if they do,
+report as a bug), but as we discussed in lecture, here's a proposal for a
+tie-breaking rule.  If the centre of the pixel is right on the boundary, try the
+top-left corner.  If the top-left corner is ALSO right on the boundary, try the
+top-right, then the bottom-right, then the bottom-left.  Not all five of these
+points can be on the boundary.  Of course, it's possible that we have just such
+an arrangement that we end up with a hole, but at least we won't get shimmer.
+
+HINTS
+
+I suggest using `pnmenlarge` when you want to eyeball your output, perhaps with
+a 10x multiplier.  I do something like this:
+
+`node 10.js in.json out.pnm && pnmenlarge 10 out.pnm | pnmtojpeg > out.jpg`
+
+I also strongly suggest breaking the problem down into parts, putting most of
+those parts into a reusable library, and building unit-tests for the library.
