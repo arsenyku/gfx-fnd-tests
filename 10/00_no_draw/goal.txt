@@ -1,0 +1,14 @@
+Triangles that don't cover any pixel-centres do not color any pixels in.  These
+all cross through multiple pixels, but touch the centre of none.
+
+    { "points": [[0.1, 0.1], [1.9, 0.1], [1, 0.9]], "color": [1, 0, 0] },
+    This is nearly 2 wide at the top, and narrowly misses the pixels at 0,0 and 1,0
+
+    { "points": [[8.9, 8.0], [1.0, 0.5], [8.9, 8.5]], "color": [2, 0, 0] },
+    This is a long thin crazy diagonal
+
+    { "points": [[1.9, 1.9], [1.9, 2.1], [6, 2]], "color": [3, 0, 0] },
+    Long in the x-axis, but thin in the y-axis
+
+    { "points": [[3.5, 0.1], [4.0, 9], [4.5, 0.1]], "color": [4, 0, 0] }
+    Long in the y-axis, but thin in the x-axis

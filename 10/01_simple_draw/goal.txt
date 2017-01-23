@@ -1,0 +1,13 @@
+Hopefully these triangle all show up, and hopefully none of them collide or touch.
+
+    { "points": [[0.5, 0.6], [0.6, 0.5], [0.4, 0.4]], "color": [251, 0, 0] },
+    One red pixel, top-left
+
+    { "points": [[2.4, 1.6], [0.6, 1.6], [1.1, 9.4]], "color": [0, 252, 0] },
+    A green stripe down the left side.
+  
+    { "points": [[1.9, 1.9], [1.9, 0.9], [6, 0.9]], "color": [0, 0, 253] },
+    A blue stripe along the top.
+
+    { "points": [[7.5, 9.5], [3.3, 3.4], [9.5, 7.5]], "color": [184, 54, 0] }
+    A large orange diagonal triangle, roughly isoceles, pointing toward top-left.

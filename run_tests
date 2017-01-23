@@ -10,8 +10,6 @@ import tempfile
 
 possible_errors = {
     'USAGE': "Usage: " + __file__ + " <your_program> <task_number> ( <test_numbers>... )",
-    'HEY': "HEY",
-    'HO': "HO",
 }
 
 found_errors = []
@@ -141,7 +139,7 @@ def main(argv):
     solution_filename = arguments.pop(0)
     prog = canonicalize_exec(solution_filename)
     if not prog:
-        puke_and_quit("Testee < " + prog + " > not found or not executable")
+        puke_and_quit("Testee < " + solution_filename + " > not found or not executable")
     task_number = arguments.pop(0)
     test_list = arguments
     choose_task_and_run_tests(prog, task_number, test_list)
