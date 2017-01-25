@@ -1,0 +1,2 @@
+This is supposed to draw a pretty multi-coloured spiral.  It exists to test
+whether adjacent triangles can agree on who owns which pixel.
